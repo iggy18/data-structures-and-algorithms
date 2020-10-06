@@ -34,11 +34,14 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr, value) => {
-  // Solution code here...
+  arr.push(value);
 };
 
 const addNumbers = (num, arr, times, callback) => {
-  // Solution code here...
+  for (let i = times; i > 0; i--) {
+    callback(arr, num);
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -76,10 +79,22 @@ Iterate over the array using forEach to determine the output based on several ru
 
 Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
+function fizzbuzz(arr) {
+  let bucket = [];
+  arr.forEach(poot => {
+    if (poot % 3 === 0 && poot % 5 === 0) {
+      bucket.push("Fizz Buzz");
+    } else if (poot % 3 === 0) {
+      bucket.push("Fizz");
+    } else if (poot % 5 === 0) {
+      bucket.push("Buzz");
+    } else {
+      bucket.push(poot);
+    }
+  });
+  return bucket;
+}
 
-const fizzbuzz = (arr) => {
-  // Solution code here...
-};
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
