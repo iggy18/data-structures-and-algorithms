@@ -44,7 +44,7 @@ class LinkedList:
         node = self.head
         phrase = []
         while node != None:
-            phrase.append(f'[ ' +node.data+ ' ]')
+            phrase.append(f'{ ' +node.data+ ' }')
             node = node.next
         phrase.append("NUll")
         return " -> ".join(phrase)
