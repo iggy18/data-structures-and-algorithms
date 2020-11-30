@@ -53,7 +53,7 @@ def test_enqueue_two():
     expected = "apples"
     assert actual == expected
 
-
+@pytest.mark.skip
 def test_dequeue_when_empty():
     q = Queue()
     with pytest.raises(InvalidOperationError):
