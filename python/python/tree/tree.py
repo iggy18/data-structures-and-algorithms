@@ -23,6 +23,7 @@ class BinaryTree:
             values.append(root.value)
             walk(root.left)  # recursive
             walk(root.right)  # recursive
+        # this calls the walk function and passes the root as the peramimter
         walk(self.root)
         print(values)
 
@@ -65,10 +66,35 @@ class BinarySearchTree(BinaryTree):
         self.root = None
 
     def add(self, value):
-        pass
+        if value < root.value:
+            if not root.left:
+                root.left = node
+            else:
+                pass
+        else:
+            if not root.right:
+                root.right = node
+            else:
+                pass
+    walk(self.root)
 
-    def contains(self):
-        pass
+    def contains(self, value):
+        def walk(node):
+            if not node:
+                return False
+            if node.value == value:
+                return True
+            else:
+                """
+                if the value in less than nodes value look left
+                """
+                if value < node.value:
+                    # walk function wants a node, so you will pass it a node.
+                    return walk(node.left)
+                else:
+                    return walk(node.right)
+        found = walk(self.root)
+        return found
 
 
 a = Node("A")  # this assigns value to the node
