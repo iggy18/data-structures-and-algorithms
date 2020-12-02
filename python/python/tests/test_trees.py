@@ -94,9 +94,22 @@ def test_can_use_add_method_to_add_to_tree():
     tree = BinarySearchTree()
     tree.add(3)
     tree.add(6)
-    actual = tree.preorder
+    tree.add(4)
+    actual = tree.preorder()
     expected = [3, 6, 4]
+    assert actual == expected
 
 
 def test_binary_search_tree_can_successfully_sort_values():
-    pass
+    tree = BinarySearchTree()
+    tree.add(4)
+    tree.add(9)
+    tree.add(2)
+    tree.add(42)
+    tree.add(3)
+    tree.add(15)
+    tree.add(1)
+    tree.add(21)
+    actual = tree.root.right.right.value
+    expected = 42
+    assert actual == expected

@@ -82,18 +82,24 @@ class BinarySearchTree(BinaryTree):
         self.root = None
 
     def add(self, value):
+        """
+        """
+        node = Node(value)
 
         def walk(root):
-            if value < root.value:
+            if not root:
+                self.root = node
+                return
+            if root.value > value:
                 if not root.left:
                     root.left = node
                 else:
-                    pass
+                    walk(root.left)
             else:
                 if not root.right:
                     root.right = node
                 else:
-                    pass
+                    walk(root.right)
         walk(self.root)
 
     def contains(self, value):
@@ -129,3 +135,15 @@ a.left.right = e
 print("preorder", tree.preorder())
 print("in order", tree.in_order())
 print("post", tree.post_order())
+
+tree = BinarySearchTree()
+tree.add(4)
+tree.add(9)
+tree.add(2)
+tree.add(42)
+tree.add(3)
+tree.add(15)
+tree.add(1)
+tree.add(21)
+actual = tree.preorder()
+print("binary preorder", tree.preorder())
