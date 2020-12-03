@@ -1,3 +1,7 @@
+from numpy.random import randint
+from stacks import Queue
+
+
 class Node:
 
     def __init__(self, value):
@@ -59,6 +63,23 @@ class BinaryTree:
         walk(self.root)
         return values
 
+    def breadth_first(self):
+        """
+        this method traverses the width of the tree before stepping down a level
+        """
+        breadth = Queue()
+        breadth.enqueue(self.root)
+
+        while not breadth.is_empty():  # while the breadth queue is NOT empty...
+            if not self.root:  # if there is no root, exit
+                return
+            front = breadth.dequeue()  # what was dequeued is stored in "front" variable
+            return front.value
+            if front.left:
+                breadth.enqueue(front.left)
+            if front.right:
+                breadth.enqueue(front.right)
+
     def max_value(self):
 
         max_value = self.root.value
@@ -106,6 +127,7 @@ class BinarySearchTree(BinaryTree):
         """
         search tree for a given value return true if found else false.
         """
+
         def walk(root):
             if not root:
                 return False
@@ -147,3 +169,20 @@ tree.add(1)
 tree.add(21)
 actual = tree.preorder()
 print("binary preorder", tree.preorder())
+
+#values = randint(0, 100, 50)
+# for numbers in values:
+#    print(f"tree2.add({numbers})")
+
+
+def grow_a_redwood():
+    values = randint(0, 100, 50)
+    tree = BinarySearchTree()
+    for number in values:
+        tree.add(number)
+    return tree
+
+
+my_new_tree = grow_a_redwood()
+print(f"breadth first {my_new_tree.breadth_first()}")
+print(my_new_tree.in_order())
