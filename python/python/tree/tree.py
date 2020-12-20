@@ -1,3 +1,7 @@
+from numpy.random import randint
+from stacks import Queue
+
+
 class Node:
 
     def __init__(self, value):
@@ -25,7 +29,7 @@ class BinaryTree:
             walk(root.right)  # recursive
         # this calls the walk function and passes the root as the peramimter
         walk(self.root)
-        print(values)
+        return values
 
     def in_order(self):
         """
@@ -41,7 +45,7 @@ class BinaryTree:
             values.append(root.value)
             walk(root.right)  # recursive
         walk(self.root)
-        print(values)
+        return values
 
     def post_order(self):
         """
@@ -57,7 +61,40 @@ class BinaryTree:
             walk(root.right)  # recursive
             values.append(root.value)
         walk(self.root)
-        print(values)
+        return values
+
+    def breadth_first(self):
+        """
+        this method traverses the width of the tree before stepping down a level
+        """
+        breadth = Queue()
+        breadth.enqueue(self.root)
+
+        while not breadth.is_empty():  # while the breadth queue is NOT empty...
+            if not self.root:  # if there is no root, exit
+                return
+            front = breadth.dequeue()  # what was dequeued is stored in "front" variable
+            return front.value
+            if front.left:
+                breadth.enqueue(front.left)
+            if front.right:
+                breadth.enqueue(front.right)
+
+    def max_value(self):
+
+        max_value = self.root.value
+
+        def walk(root):
+            nonlocal max_value
+
+            if root.value > max_value:
+                max_value = root.value
+            if root.left:
+                walk(root.left)
+            if root.right:
+                walk(root.right)
+        walk(self.root)
+        return max_value
 
 
 class BinarySearchTree(BinaryTree):
@@ -66,33 +103,41 @@ class BinarySearchTree(BinaryTree):
         self.root = None
 
     def add(self, value):
-        if value < root.value:
-            if not root.left:
-                root.left = node
+        """
+        """
+        node = Node(value)
+
+        def walk(root):
+            if not root:
+                self.root = node
+                return
+            if root.value > value:
+                if not root.left:
+                    root.left = node
+                else:
+                    walk(root.left)
             else:
-                pass
-        else:
-            if not root.right:
-                root.right = node
-            else:
-                pass
-    walk(self.root)
+                if not root.right:
+                    root.right = node
+                else:
+                    walk(root.right)
+        walk(self.root)
 
     def contains(self, value):
-        def walk(node):
-            if not node:
+        """
+        search tree for a given value return true if found else false.
+        """
+
+        def walk(root):
+            if not root:
                 return False
-            if node.value == value:
+            if root.value == value:
                 return True
             else:
-                """
-                if the value in less than nodes value look left
-                """
-                if value < node.value:
-                    # walk function wants a node, so you will pass it a node.
-                    return walk(node.left)
+                if root.value > value:
+                    return walk(root.left)
                 else:
-                    return walk(node.right)
+                    return walk(root.right)
         found = walk(self.root)
         return found
 
@@ -109,6 +154,35 @@ a.left = b
 a.right = c
 a.left.left = d
 a.left.right = e
-tree.preorder()
-tree.in_order()
-tree.post_order()
+print("preorder", tree.preorder())
+print("in order", tree.in_order())
+print("post", tree.post_order())
+
+tree = BinarySearchTree()
+tree.add(4)
+tree.add(9)
+tree.add(2)
+tree.add(42)
+tree.add(3)
+tree.add(15)
+tree.add(1)
+tree.add(21)
+actual = tree.preorder()
+print("binary preorder", tree.preorder())
+
+#values = randint(0, 100, 50)
+# for numbers in values:
+#    print(f"tree2.add({numbers})")
+
+
+def grow_a_redwood():
+    values = randint(0, 100, 50)
+    tree = BinarySearchTree()
+    for number in values:
+        tree.add(number)
+    return tree
+
+
+my_new_tree = grow_a_redwood()
+print(f"breadth first {my_new_tree.breadth_first()}")
+print(my_new_tree.in_order())
