@@ -40,19 +40,19 @@ class LinkedList:
     #         new_node.next = check.next
     #         check.next = new_node
 
-    def __str__(self):
-        node = self.head
-        phrase = []
-        while node != None:
-            phrase.append(f'{ ' +node.data+ ' }')
-            node = node.next
-        phrase.append("NUll")
-        return " -> ".join(phrase)
+#     def __str__(self):
+#         node = self.head
+#         phrase = []
+#         while node != None:
+#             phrase.append(f'{ ' +node.data+ ' }')
+#             node = node.next
+#         phrase.append("NUll")
+#         return " -> ".join(phrase)
 
-new_node = LinkedList()
-new_node.insert("a")
-new_node.insert("b")
-new_node.insert("c")
-new_node.insert("d")
-new_node.__str__()
+# new_node = LinkedList()
+# new_node.insert("a")
+# new_node.insert("b")
+# new_node.insert("c")
+# new_node.insert("d")
+# new_node.__str__()
 
