@@ -35,3 +35,8 @@ class Hashtable:
                 return stored_value
             current = current.next
 
+    def add(self, key, value):
+        self.size += 1
+        index = self._hash(key)
+        node = self._buckets[index]
+
