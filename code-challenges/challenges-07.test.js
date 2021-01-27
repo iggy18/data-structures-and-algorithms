@@ -37,6 +37,7 @@ const forLoopTwoToThe = (arr) => {
   let results = [];
   for (let num of arr) {
     results.push(Math.pow(2, num));
+    return num;
   }
 }
 
