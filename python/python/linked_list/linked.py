@@ -2,8 +2,8 @@ class Node:
     """
     this is the constructor.
     """
-    def __init__ (self, data = None, next = None):
-        self.data = data
+    def __init__ (self, val = None, next = None):
+        self.val = val
         self.next = next
 
 
@@ -14,39 +14,33 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def includes(self, data):
+    def contains(self):
+        contents = []
+        node = self.head
+        while node:
+            contents.append(node.val)
+            node = node.next
+        return contents
+
+    def includes(self, val):
         node = self.head
         while node != None:
-            if node.data == data:
+            if node.val == val:
                 return True
             node = node.next
         return False
 
-    def insert(self, data):
-        new_node = Node(data, self.head)
+    def insert(self, val):
+        new_node = Node(val, self.head)
         self.head = new_node
-
-    # def insert_after(self, current_node, data):
-    #     pass
-    #     check = self.head
-    #     while check is not None:
-    #         if check.data == current_node.data
-    #             break
-    #         check = check.next
-    #     if check is None
-    #         print("not in list")
-    #     else:
-    #         new_node = Node(data)
-    #         new_node.next = check.next
-    #         check.next = new_node
 
     def __str__(self):
         node = self.head
         phrase = []
         while node != None:
-            phrase.append(f'{ ' +node.data+ ' }')
+            phrase.append(f'{{ ' + str(node.val) + ' }')
             node = node.next
-        phrase.append("NUll")
+        phrase.append("NULL")
         return " -> ".join(phrase)
 
 new_node = LinkedList()
