@@ -86,3 +86,20 @@ class LinkedList:
             new_node = Node(new_val)
             new_node.next  = node.next
             node.next = new_node
+
+    def kth_from_end(self, k):
+        if not self.head:
+            return "there is no list to search"
+        if k < 0:
+            return "you must enter a positive value"
+        lead = self.head
+        for i in range(k+1):
+            if lead == None:
+                return "k is greater than length of linked list"
+            lead = lead.next
+        kth = self.head
+        while lead:
+            lead = lead.next
+            kth = kth.next
+        return kth.val
+
