@@ -43,10 +43,46 @@ class LinkedList:
         phrase.append("NULL")
         return " -> ".join(phrase)
 
-new_node = LinkedList()
-new_node.insert("a")
-new_node.insert("b")
-new_node.insert("c")
-new_node.insert("d")
-new_node.__str__()
+    def append(self, val):
+        new_node = Node(val)
+        if self.head is None:
+            self.head = new_node
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
 
+
+    def insert_before(self, val, new_val):
+        if self.head is None:
+            return "no list was created"
+        if val == self.head.val:
+            new_node = Node(new_val)
+            new_node.next = self.head
+            self.head = new_node
+            return
+            # have to return of else new value gets added to front of list twice
+        node = self.head
+        while node:
+            if node.next.val == val:
+                break
+            node = node.next
+        if node.next is None:
+            return "the item you're looking for is not in the list"
+        else:
+            new_node = Node(new_val)
+            new_node.next = node.next
+            node.next = new_node
+
+    def insert_after(self, val, new_val):
+        node = self.head
+        while node:
+            if node.val == val:
+                break
+            node = node.next
+        if node is None:
+            return "search value is not in list"
+        else:
+            new_node = Node(new_val)
+            new_node.next  = node.next
+            node.next = new_node
