@@ -103,3 +103,19 @@ class LinkedList:
             kth = kth.next
         return kth.val
 
+def zip_lists(first, second):
+    a = first.head
+    zip_a = a.next
+    b = second.head
+    zip_b = b.next
+    while a or b:
+        b.next = a
+        a.next = zip_b
+        a = zip_a
+        b = zip_b
+        if a.next != None and b.next != None:
+            zip_a = zip_a.next
+            zip_b = zip_b.next
+        else:
+            b.next = a
+            return second
