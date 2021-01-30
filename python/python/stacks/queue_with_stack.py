@@ -1,10 +1,13 @@
 
+
 class Node:
 
     def __init__(self, value):
         self.value = value
         self.next = None
 
+class InvalidOperationError(Exception):
+    pass
 
 class Stack:
 
@@ -17,9 +20,11 @@ class Stack:
         self.top_of_stack = new_node
 
     def pop(self):
-        value = self.top_of_stack.value
-        self.top_of_stack = self.top_of_stack.next
-        return value
+        if self.top_of_stack:
+            value = self.top_of_stack.value
+            self.top_of_stack = self.top_of_stack.next
+            return value
+        raise InvalidOperationError("Method not allowed on empty collection")
 
     def peek(self):
         if self.is_empty():
@@ -27,21 +32,31 @@ class Stack:
                 "Method not allowed on empty collection")
         return self.top_of_stack.value
 
+    def is_empty(self):
+        if not self.top_of_stack:
+            return True
+        return False
+
 
 class Pseudo_Queue():
 
-    __init__(self):
-        self.first_stack = stack()
-        self.second_stack = stack()
+    def __init__(self):
+        self.first_stack = Stack()
+        self.second_stack = Stack()
 
-    enqueue(self, value):
-        if first_stack == None:
-            self.first_stack.push(value)
+    def enqueue(self, value):
+        if self.first_stack == None:
+            Stack.push(value)
             return
+
         while self.first_stack.top_of_stack:
             top = self.first_stack.pop()
             self.second_stack.push(top)
         self.second_stack.push(value)
 
-    dequeue(self, value):
+        while self.second_stack.top_of_stack:
+            top = self.second_stack.pop()
+            self.first_stack.push(top)
+
+    def dequeue(self):
         return self.first_stack.pop()
