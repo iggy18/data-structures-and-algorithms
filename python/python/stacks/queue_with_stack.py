@@ -1,4 +1,5 @@
-
+class InvalidOperationError(Exception):
+    pass
 
 class Node:
 
@@ -6,8 +7,6 @@ class Node:
         self.value = value
         self.next = None
 
-class InvalidOperationError(Exception):
-    pass
 
 class Stack:
 
@@ -24,13 +23,15 @@ class Stack:
             value = self.top_of_stack.value
             self.top_of_stack = self.top_of_stack.next
             return value
-        raise InvalidOperationError("Method not allowed on empty collection")
+        else:
+            raise InvalidOperationError("Method not allowed on empty collection")
 
     def peek(self):
         if self.is_empty():
             raise InvalidOperationError(
                 "Method not allowed on empty collection")
-        return self.top_of_stack.value
+        else:
+            return self.top_of_stack.value
 
     def is_empty(self):
         if not self.top_of_stack:
@@ -59,4 +60,7 @@ class Pseudo_Queue():
             self.first_stack.push(top)
 
     def dequeue(self):
+        if not self.first_stack.top_of_stack:
+            raise InvalidOperationError("Method not allowed on empty collection")
         return self.first_stack.pop()
+

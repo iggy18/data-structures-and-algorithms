@@ -1,6 +1,6 @@
 import pytest
 
-from queue_with_stack import Node, Stack, Pseudo_Queue
+from queue_with_stack import Node, Stack, Pseudo_Queue, InvalidOperationError
 
 
 def test_enqueue():
@@ -21,7 +21,6 @@ def test_dequeue():
     assert actual == expected
 
 
-@pytest.mark.skip
 def test_dequeue_when_empty():
     q = Pseudo_Queue()
     with pytest.raises(InvalidOperationError):
@@ -36,21 +35,29 @@ def test_peek():
     expected = "peek-a-boo"
     assert actual == expected
 
-@pytest.mark.skip
+
 def test_empty_peek():
     q = Pseudo_Queue()
-    actual = q.first_stack.peek()
-    expected = "Method not allowed on empty collection"
+    with pytest.raises(InvalidOperationError):
+        q.first_stack.peek()
+
+
+def test_is_empty():
+    q = Pseudo_Queue()
+    q.enqueue("test")
+    q.dequeue()
+    actual = q.first_stack.is_empty()
+    expected = True
     assert actual == expected
 
-@pytest.mark.skip
-def test_empty_dequeue():
-    pass
-
-@pytest.mark.skip
-def test_is_empty():
-    pass
-
-@pytest.mark.skip
 def test_fill_and_empty():
-    pass
+    q = Pseudo_Queue()
+    q.enqueue("one")
+    q.enqueue("two")
+    q.enqueue("three")
+    q.dequeue()
+    q.dequeue()
+    q.dequeue()
+    actual = q.first_stack.is_empty()
+    expected = True
+    assert actual == expected
