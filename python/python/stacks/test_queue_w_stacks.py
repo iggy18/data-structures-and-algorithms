@@ -27,7 +27,6 @@ def test_dequeue_when_empty():
         q.dequeue()
 
 
-
 def test_peek():
     q = Pseudo_Queue()
     q.enqueue("peek-a-boo")
