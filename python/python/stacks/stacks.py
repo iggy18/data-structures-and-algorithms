@@ -38,7 +38,6 @@ class Stack:
         return self.top_of_list.value
 
 
-
 class Queue:
 
     def __init__(self):
