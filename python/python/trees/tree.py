@@ -1,5 +1,8 @@
 from stacks import Queue
 
+class Nope(Exception):
+    pass
+
 class Node:
 
     def __init__(self, value):
@@ -49,20 +52,24 @@ class BinaryTree:
         return values
 
     def breadth_first(self):
-        breadth = Queue()
-        breadth.enqueue(self.root)
+        if not self.root:
+            raise Nope("there is no tree here")
+        queue = Queue()
+        queue.enqueue(self.root)
+        values = []
+        while not queue.is_empty():
+            current = queue.dequeue()
+            if current.left:
+                queue.enqueue(current.left)
+            if current.right:
+                queue.enqueue(current.right)
+            values.append(current.value)
+        return values
 
-        while not breadth.is_empty():
-            if not self.root:
-                return
-            front = breadth.dequeue()
-            return front.value
-            if front.left:
-                breadth.enqueue(front.left)
-            if front.right:
-                breadth.enqueue(front.right)
 
     def max_value(self):
+        if not self.root:
+            return 0
         max_value = self.root.value
         def walk(root):
             nonlocal max_value
@@ -112,3 +119,11 @@ class BinarySearchTree(BinaryTree):
                     return walk(root.right)
         found = walk(self.root)
         return found
+
+
+
+
+
+
+
+

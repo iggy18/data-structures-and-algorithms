@@ -47,12 +47,12 @@ class Queue:
         self.rear = None
 
     def enqueue(self, value):
-        if self.rear is None:
+        if self.is_empty():
             self.front = Node(value)
             self.rear = self.front
         else:
             self.rear.next = Node(value)
-            self.rear = self.front.next
+            self.rear = self.rear.next
 
     def dequeue(self):
         if self.front is None:
