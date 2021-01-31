@@ -63,6 +63,8 @@ class BinaryTree:
                 breadth.enqueue(front.right)
 
     def max_value(self):
+        if not self.root:
+            return 0
         max_value = self.root.value
         def walk(root):
             nonlocal max_value
@@ -112,3 +114,11 @@ class BinarySearchTree(BinaryTree):
                     return walk(root.right)
         found = walk(self.root)
         return found
+
+
+
+
+
+
+
+
