@@ -51,7 +51,6 @@ class BinaryTree:
     def breadth_first(self):
         breadth = Queue()
         breadth.enqueue(self.root)
-
         while not breadth.is_empty():
             if not self.root:
                 return
