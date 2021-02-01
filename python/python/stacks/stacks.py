@@ -50,7 +50,7 @@ class Queue:
             self.rear = self.front
         else:
             self.rear.next = Node(value)
-            self.rear = self.front.next
+            self.rear = self.rear.next
 
     def dequeue(self):
         if not self.front:
