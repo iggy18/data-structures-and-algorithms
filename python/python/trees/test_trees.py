@@ -115,5 +115,3 @@ def test_binary_search_tree_can_successfully_sort_values():
     expected = 42
     assert actual == expected
 
-
-
