@@ -1,4 +1,4 @@
-from repeated_word import strip_down, not_split, seen_word, which_word_is_repeated_first
+from repeated_word import strip_down, not_split, seen_word, which_word_is_repeated_first, repeated_word_dict
 
 
 def test_strip_down():
@@ -49,5 +49,12 @@ def test_which_word_is_repeated_first_returns_repeated_words_from_lengthy_input_
     x = 'It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York...'
     actual = which_word_is_repeated_first(x)
     expected = "summer"
+    assert actual == expected
+
+#function using built in methods and dictionary
+def test_dict():
+    x = "Once upon a time, there was a brave princess who... "
+    actual = repeated_word_dict(x)
+    expected = "a"
     assert actual == expected
 

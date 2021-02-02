@@ -1,3 +1,5 @@
+from collections import Counter
+
 def strip_down(some_text):
     some_text = some_text.lower()
     replacement = ''
@@ -32,3 +34,11 @@ def which_word_is_repeated_first(input):
     stripped = strip_down(input)
     in_array = not_split(stripped)
     return seen_word(in_array)
+
+def repeated_word_dict(input):
+    stripped = strip_down(input)
+    arr = stripped.split(' ')
+    dict = Counter(arr)
+    for key in arr:
+        if dict[key]>1:
+            return(key)
