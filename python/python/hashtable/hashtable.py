@@ -44,4 +44,4 @@ class HashTable:
         idx = prime % self.size
         return idx
 
-    
+
