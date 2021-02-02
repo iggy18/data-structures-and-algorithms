@@ -41,7 +41,7 @@ class HashTable:
         for char in key:
             num += ord(char)
         prime = num * 19
-        idx = prime %self.size
+        idx = prime % self.size
         return idx
 
-
+    
