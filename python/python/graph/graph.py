@@ -7,7 +7,7 @@ class Vertex:
         self.next = None
 
 class Edge:
-    def __init__(self, weight=0):
+    def __init__(self, vertex, weight=0):
         self.vertex = vertex
         self.weight = weight
 
@@ -15,12 +15,12 @@ class Graph:
     def __init__(self):
         self.neighbors = {}
 
-    def add_node(self):
-        node = vertex(val)
+    def add_node(self, val):
+        node = Vertex(val)
         self.neighbors[node] = []
         return node
 
-    def add_edge(self, origin, destination):
+    def add_edge(self, origin, destination, weight=0):
         if origin not in self.neighbors:
             raise WhatAreYouDoing('you need an origin node')
         if destination not in self.neighbors:
@@ -34,13 +34,7 @@ class Graph:
         return self.neighbors.keys()
 
     def get_neighbors(self, node):
-        neighborhood = []
-        connetions = self.neighbors.get(node, [])
-        for neighbor in connections:
-            close = {}
-            close[neighbor] = neighbor.weight
-            neighbor.append(close)
-        return neighborhood
+        return self.neighbors[node]
 
-    def size():
+    def size(self):
         return len(self.neighbors)
