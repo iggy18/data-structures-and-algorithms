@@ -1,4 +1,5 @@
 from graph import WhatAreYouDoing, Vertex, Edge, Graph
+from get_edge import get_edge
 import pytest
 
 def test_what_are_you_doing():
@@ -114,35 +115,50 @@ def test_size_one():
 
 
 def test_size_two():
-    d = Graph()
-    d.add_node("spam")
-    d.add_node("bacon")
+    x = Graph()
+    x.add_node("spam")
+    x.add_node("bacon")
     expected = 2
-    actual = d.size()
+    actual = x.size()
     assert actual == expected
 
 def test_breadth_first():
-    g = Graph()
-    pandora = g.add_node("Pandora")
-    arendelle = g.add_node("Arendelle")
-    metroville = g.add_node("Metroville")
-    monstropolis = g.add_node("Monstropolis")
-    narnia = g.add_node("Narnia")
-    naboo = g.add_node("Naboo")
-    g.add_edge(pandora, arendelle)
-    g.add_edge(arendelle, pandora)
-    g.add_edge(arendelle, metroville)
-    g.add_edge(metroville, arendelle)
-    g.add_edge(arendelle, monstropolis)
-    g.add_edge(monstropolis, arendelle)
-    g.add_edge(metroville, monstropolis)
-    g.add_edge(monstropolis, metroville)
-    g.add_edge(metroville, narnia)
-    g.add_edge(narnia, metroville)
-    g.add_edge(metroville, naboo)
-    g.add_edge(naboo, metroville)
-    g.add_edge(narnia, naboo)
-    g.add_edge(naboo, narnia)
-    vertices = g.breadth_first(pandora)
+    x = Graph()
+    pandora = x.add_node("Pandora")
+    arendelle = x.add_node("Arendelle")
+    metroville = x.add_node("Metroville")
+    monstropolis = x.add_node("Monstropolis")
+    narnia = x.add_node("Narnia")
+    naboo = x.add_node("Naboo")
+    x.add_edge(pandora, arendelle)
+    x.add_edge(arendelle, pandora)
+    x.add_edge(arendelle, metroville)
+    x.add_edge(metroville, arendelle)
+    x.add_edge(arendelle, monstropolis)
+    x.add_edge(monstropolis, arendelle)
+    x.add_edge(metroville, monstropolis)
+    x.add_edge(monstropolis, metroville)
+    x.add_edge(metroville, narnia)
+    x.add_edge(narnia, metroville)
+    x.add_edge(metroville, naboo)
+    x.add_edge(naboo, metroville)
+    x.add_edge(narnia, naboo)
+    x.add_edge(naboo, narnia)
+    vertices = x.breadth_first(pandora)
     values = [vertex.val for vertex in vertices]
     assert values == ["Pandora", "Arendelle"]
+
+def test_flights():
+    graph = Graph()
+    metroville = graph.add_node("Metroville")
+    pandora = graph.add_node("Pandora")
+    arendelle = graph.add_node("Arendelle")
+    graph.add_edge(pandora, arendelle, 150)
+    graph.add_edge(arendelle, pandora, 150)
+    graph.add_edge(pandora, metroville, 82)
+    graph.add_edge(metroville, pandora, 82)
+    graph.add_edge(metroville, arendelle, 99)
+    graph.add_edge(arendelle, metroville, 99)
+    assert get_edge(graph, ["Metroville","Pandora"]) == (False,0)
+    assert get_edge(graph, ["Metroville","arendelle"]) == (False,0)
+    assert get_edge(graph, ["arendelle","Pandora"]) == (False,0)

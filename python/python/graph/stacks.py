@@ -11,7 +11,6 @@ class InvalidOperationError(Exception):
 
 class Stack:
 
-
     def __init__(self):
         self.top_of_list = None
 
