@@ -1,11 +1,14 @@
 def reverse_one(string):
-    pass
+    return string[::-1]
 
 def reverse_two(string):
-    pass
+    results = ""
+    for char in string:
+        results = char + results
+    return results
 
 def reverse_three(string):
-    pass
+    return ''.join(reversed(string))
 
 
 
