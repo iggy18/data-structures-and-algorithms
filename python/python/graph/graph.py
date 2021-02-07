@@ -56,3 +56,14 @@ class Graph:
                     queue.enqueue(neighbor)
         return visited_vertex
 
+    def depth_first(self, root):
+        seen = []
+        def walk(root):
+            if root in seen:
+                return
+            seen.append(root)
+            for vertex in [edge.vertex for edge in self.get_neighbors(root)]:
+                walk(vertex)
+        walk(root)
+        return [vertex.val for vertex in seen]
+
