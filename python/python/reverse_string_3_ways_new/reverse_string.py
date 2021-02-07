@@ -1,5 +1,3 @@
-#commit having trouble finding new version of files
-
 def reverse_one(string):
     return string[::-1]
 
