@@ -22,6 +22,9 @@ class Graph:
         self.neighbors[vertex] = []
         return vertex
 
+    def connected(self, first, second):
+        return second in self.breadth_first(first)
+
     def add_edge(self, origin, destination, weight=0):
         if origin not in self.neighbors:
             raise WhatAreYouDoing('you need an origin vertex')
