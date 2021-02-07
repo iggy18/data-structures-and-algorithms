@@ -6,21 +6,21 @@ def get_edge(graph, location):
     cost = 0
     for origin_name, destination_name in zip(location, location[1]):
         nodes = graph.get_nodes()
-        origin_node = None
-        for candidate_node in nodes:
-            if candidate_node.val == origin_name:
-                origin_node = candidate_node
+        origin = None
+        for node in nodes:
+            if node.val == origin_name:
+                origin = node
                 break
-        if not origin_node:
+        if not origin:
             return False, 0
-        edges = graph.get_neighbors(origin_node)
-        destination_node = None
+        edges = graph.get_neighbors(origin)
+        destination = None
         for edges in edges:
             if edges.vertex.val == destination_name:
                 cost += edge.weight
-                destination_node = edge.vertex
+                destination = edge.vertex
                 break
-        if not destination_node:
+        if not destination:
             return False, 0
 
     return True,cost
