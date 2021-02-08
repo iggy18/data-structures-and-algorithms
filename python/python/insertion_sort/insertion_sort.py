@@ -8,7 +8,13 @@ def check_sort(arr):
     return True
 
 def insertion_sort(arr):
-    pass
-
+    for index_num in range(1,len(arr)):
+        current_value = arr[index_num]
+        current_position = index_num
+        while current_position > 0 and arr[current_position-1] > current_value:
+            arr[current_position] = arr[current_position-1]
+            current_position = current_position - 1
+        arr[current_position] = current_value
+    return arr
 
 
