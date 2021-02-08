@@ -8,17 +8,16 @@ class SprinklerSystem:
     def __init__(self):
         self.inlet = None
 
-    def get_usage(self, sprinkler_system):
-        if not self.sprinkler_system:
-            return 0
-        usage = 0
+    def get_usage(self):
+        water = []
         def flush_system(sprinkler):
             if not sprinkler:
                 return
-            usage += sprinkler.usage
+            water.append(sprinkler.usage)
             flush_system(sprinkler.left_line)
             flush_system(sprinkler.right_line)
-        return usage
+        flush_system(self.inlet)
+        return sum(water)
 
 
 
