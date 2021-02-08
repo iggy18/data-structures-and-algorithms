@@ -14,7 +14,6 @@ def merge_sort(arr):
         right = arr[mid:]
         merge_sort(left)
         merge_sort(right)
-
         left_index_position = 0
         right_index_position = 0
         output_arr_position = 0
@@ -34,7 +33,6 @@ def merge_sort(arr):
             arr[output_arr_position] = right[right_index_position]
             right_index_position += 1
             output_arr_position += 1
-
         return arr
 
 

@@ -26,19 +26,19 @@ def test_check_sort_works_negative_numbers():
     expected = False
     assert actual == expected
 
-def test_insertion_sort_sorts_numbers():
+def test_merge_sort_sorts_numbers():
     x = [2,4,5,3,1]
     actual = merge_sort(x)
     expected = [1,2,3,4,5]
     assert actual == expected
 
-def test_insertion_sort_with_mixed_negative_numbers():
+def test_merge_sort_with_mixed_negative_numbers():
     x = [1,-2,3,-4,5,-6]
     actual = merge_sort(x)
     expected = [-6,-4,-2,1,3,5]
     assert actual == expected
 
-def test_insertion_sort_with_randomly_generated_list():
+def test_merge_sort_with_randomly_generated_list():
     nums = randint(0,100,50)
     x = merge_sort(nums)
     actual = check_sort(x)
